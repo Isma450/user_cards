@@ -2,6 +2,13 @@ import { useState } from "react";
 import { Button } from "../Button/button";
 import "./card.css";
 
+/**
+ * this component is a card that contains the user's image, name, email, phone number and location.
+ * It also contains a button that allows you to display additional information about the user.
+ * @param {Object} user - user data
+ * @returns {JSX.Element} - card component
+ */
+
 export const Card = ({ user }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 

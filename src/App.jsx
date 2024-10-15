@@ -4,20 +4,32 @@ import axios from "axios";
 import "./App.css";
 
 function App() {
-  // I useState to get data from localStorage to avoid multiple API calls
+  /**
+   *I useState to get data from localStorage to avoid multiple API calls
+   * @returns  {Array} data - data from localStorage or null
+   * ⚠️ btw : all this Api call can be stored in a custom hook but I stick with course content :)
+   */
   const [data, setData] = useState(() => {
     const localData = localStorage.getItem("data");
     return localData ? JSON.parse(localData) : null;
   });
 
-  // I use this state to display a loading message while fetching data from API
-  // and an error message if an error occurs
+  /**
+   * I use this state to display a loading message while fetching data from API
+   * and an error message if an error occurs
+   */
   const [loading, setLoading] = useState(!data);
   const [error, setError] = useState(null);
 
-  // I use useEffect to fetch data from API and store it in localStorage with data as dependency to avoid infinite api calls
+  /**
+   * I use useEffect to fetch data from the API if data is not null
+   * and store it in localStorage
+   * @returns {Array} data - data from the API
+   * @returns {Boolean} loading - loading message
+   * @returns {String} error - error message
+   *
+   */
   useEffect(() => {
-    // I use this clause Guard to avoid multiple API calls
     if (!data) {
       const fetchData = async () => {
         try {
