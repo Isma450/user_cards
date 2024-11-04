@@ -1,12 +1,17 @@
 import { Card } from "./component/Card/card";
 import "./App.css";
-import { UseFetch } from "./hook/useFetch";
+// import { UseFetch } from "./hook/useFetch";
+import { UseAsyncState } from "./hook/useAsyncState";
 
 function App() {
   /**
    * custom hook for the api call
    */
-  const { loading, error, data } = UseFetch(
+  // const { loading, error, data } = UseFetch(
+  //   "https://randomuser.me/api/?results=10"
+  // );
+
+  const { data, loading, error } = UseAsyncState(
     "https://randomuser.me/api/?results=10"
   );
 
@@ -17,7 +22,7 @@ function App() {
     <div className="App">
       <h1>Liste des utilisateurs</h1>
       <div className="container">
-        {data.results.map((user) => (
+        {data?.results.map((user) => (
           <Card key={user.login.uuid} user={user} />
         ))}
       </div>
